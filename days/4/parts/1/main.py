@@ -41,8 +41,8 @@ while True:
     # Parse the line (not that after Card at their start their could be many whitespaces)
     match = re.search(r"Card\s+(\d+):\s+([\d\s]+)\|\s+([\d\s]+)", line)
     card_number = int(match.group(1))
-    winning_numbers = [int(x) for x in match.group(2).split()]
-    my_numbers = [int(x) for x in match.group(3).split()]
+    winning_numbers = list(map(int, match.group(2).split()))
+    my_numbers = list(map(int, match.group(3).split()))
 
     # Count the number of winning numbers
     count = 0

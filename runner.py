@@ -10,6 +10,7 @@ if __name__ == "__main__":
     parser.add_argument("-p", "--part", type=int, help="Part to run", default=1)
     parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
     parser.add_argument("-o", "--output", action="store_true", help="Show output")
+    parser.add_argument("-P", "--profile", action="store_true", help="Profile code")
     args = parser.parse_args()
 
     level = (logging.DEBUG if args.verbose else logging.INFO)
@@ -43,7 +44,10 @@ if __name__ == "__main__":
     logging.debug(f"Input file: {in_file}")
     logging.debug(f"Python file: {python_file}")
 
-    command = f"{sys.executable} {python_file}"
+    if args.profile:
+        command = f"{sys.executable} -m cProfile -o profile.out {python_file}"
+    else:
+        command = f"{sys.executable} {python_file}"
     logging.debug(f"Command: {command}")
 
     with open(in_file, "r") as f:

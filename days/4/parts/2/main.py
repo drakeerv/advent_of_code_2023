@@ -36,8 +36,8 @@ lines: list[int] = []
 def get_winning_numbers_count(line: str) -> int:
     """Parse a line of the input file."""
     match = re.search(r"Card\s+(\d+):\s+([\d\s]+)\|\s+([\d\s]+)", line)
-    winning_numbers = [int(x) for x in match.group(2).split()]
-    my_numbers = [int(x) for x in match.group(3).split()]
+    winning_numbers = list(map(int, match.group(2).split()))
+    my_numbers = list(map(int, match.group(3).split()))
 
     return len([x for x in my_numbers if x in winning_numbers])
 

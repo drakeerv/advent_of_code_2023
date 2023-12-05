@@ -28,18 +28,20 @@ numbers = {
 }
 
 def find_first_num(line: str) -> str | None:
+    """
+    Find the first number in a string.
+    """
+
     line = line.lower()
     keys = list(numbers.keys())
 
     substring = ""
-    
-    for i in range(len(line)):
-        char = line[i]
 
+    for char in line:
         if char.isdigit():
             return char
 
-        elif char.isalpha():
+        if char.isalpha():
             substring += char
 
             for key in keys:
@@ -48,18 +50,22 @@ def find_first_num(line: str) -> str | None:
     return None
 
 def find_last_num(line: str) -> str | None:
+    """
+    Find the last number in a string.
+    """
+
     line = line.lower()
     keys = list(numbers.keys())
 
     substring = ""
-    
+
     for i in range(len(line) - 1, -1, -1):
         char = line[i]
 
         if char.isdigit():
             return char
 
-        elif char.isalpha():
+        if char.isalpha():
             substring = char + substring
 
             for key in keys:
